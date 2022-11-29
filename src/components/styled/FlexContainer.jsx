@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const StyledFlexContainer = styled.div`
     width: ${props => props.width || "100%"};
+    max-width: ${props => props.maxWidth || "1440px"};
     display: flex;
     gap: ${props => props.gap || "1px"};
     flex-direction: ${props => props.direction || "row"};
