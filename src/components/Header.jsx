@@ -10,7 +10,7 @@ import RouterLink from "./styled/RouterLink";
 
 const Header = () => {
     return (
-        <header className="w-full flex justify-center p-5 border-b-2 px-[30px]">
+        <header className="w-full flex justify-center p-5 px-[30px] mb-[50px]">
             <FlexContainer justify={"space-between"} items={"center"} >
                 <RouterLink to={"/"}>
                     <LogoContainer>
@@ -23,15 +23,15 @@ const Header = () => {
 
                 <FlexContainer width={"fit-content"} gap={"35px"}>
                     <RouterLink to={"/"}>
-                        Products
+                        Footwear
                     </RouterLink>
 
                     <RouterLink to={"/about-us"}>
                         About Us
                     </RouterLink>
 
-                    <RouterLink to={"/cart"}>
-                        Cart
+                    <RouterLink to={"/sale"}>
+                        Sale
                     </RouterLink>
                 </FlexContainer>
 
