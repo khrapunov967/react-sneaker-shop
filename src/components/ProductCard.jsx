@@ -10,7 +10,7 @@ const ProductCard = () => {
             <RouterLink to={"/product-id"}>
                 <FlexContainer direction={"column"} gap={"15px"} items={"flex-start"} width={"fit-content"} maxWidth={"230px"}>
                     <ImageContainer 
-                        src={"https://images.unsplash.com/photo-1575537302964-96cd47c06b1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"}
+                        src={"https://images.unsplash.com/photo-1608667508764-33cf0726b13a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"}
                         alt={"Nike Shoes"}
                         size={"230px"}
                     />

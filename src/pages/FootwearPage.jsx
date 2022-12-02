@@ -34,7 +34,7 @@ const FootwearPage = () => {
                 </RouterLink>
             </FlexContainer>
 
-            <FlexContainer maxWidth={"80%"} gap={"8px"} justify="space-between" margin={"0px 0px 60px 0px"}>
+            <FlexContainer maxWidth={"80%"} gap={"8px"} justify="space-between" margin={"0px 0px 100px 0px"}>
                 <ProductCard />
                 <ProductCard />
                 <ProductCard />
