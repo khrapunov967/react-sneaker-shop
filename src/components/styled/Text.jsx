@@ -5,6 +5,7 @@ const StyledText = styled.p`
     color: ${props => props.color || "#2c2c2c"};
     font-size: ${props => props.size || "1em"};
     font-weight: ${props => props.weight || "semibold"};
+    text-align: ${props => props.align || "left"};
 `;
 
 const Text = ({children, ...props}) => {
