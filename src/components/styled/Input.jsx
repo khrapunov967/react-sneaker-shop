@@ -5,9 +5,12 @@ const StyledInput = styled.input`
     font-size: ${props => props.textSize || "1em"};
     border: ${props => props.border || "none"};
     outline: ${props => props.outline || "none"};
+    padding: ${props => props.padding || "none"};
+    border-radius: ${props => props.radius || "0px"};
+    background: ${props => props.background || "transparent"};
 `;
 
-const TextInput = ({placeholder, name, value, setValue, ...props}) => {
+const Input = ({placeholder, name, value, setValue, type, ...props}) => {
     return (
         <StyledInput 
             {...props}
@@ -15,8 +18,9 @@ const TextInput = ({placeholder, name, value, setValue, ...props}) => {
             name={name}
             value={value}
             onChange={setValue}
+            type={type}
         />
     );
 };
 
-export default TextInput;
+export default Input;

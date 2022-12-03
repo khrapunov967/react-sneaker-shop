@@ -2,7 +2,7 @@ import React from "react";
 import FlexContainer from "./styled/FlexContainer";
 import SearchIcon from "../assets/icons/search-icon.svg";
 import IconContainer from "./styled/IconContainer";
-import TextInput from "./styled/TextInput";
+import Input from "./styled/Input";
 
 const SearchBar = () => {
     return (
@@ -15,9 +15,10 @@ const SearchBar = () => {
                     />
                 </IconContainer>
 
-                <TextInput 
+                <Input 
                     placeholder={"Search sneaker..."}
                     textSize={"1.3em"}
+                    type={"text"}
                 />
             </FlexContainer>
         </div>

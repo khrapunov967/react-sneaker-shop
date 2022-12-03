@@ -6,6 +6,7 @@ const StyledText = styled.p`
     font-size: ${props => props.size || "1em"};
     font-weight: ${props => props.weight || "semibold"};
     text-align: ${props => props.align || "left"};
+    margin: ${props => props.margin || "none"};
 `;
 
 const Text = ({children, ...props}) => {
