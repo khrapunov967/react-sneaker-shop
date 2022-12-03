@@ -1,6 +1,5 @@
 import React from "react";
 import Logo from "../assets/images/logo.svg";
-import SearchIcon from "../assets/icons/search-icon.svg";
 import PersonIcon from "../assets/icons/person-icon.svg";
 import BagIcon from "../assets/icons/bag-icon.svg";
 import FlexContainer from "./styled/FlexContainer";
@@ -36,13 +35,6 @@ const Header = () => {
                 </FlexContainer>
 
                 <FlexContainer justify={"space-between"} width={"fit-content"} gap={"25px"}>
-                    <IconContainer size={"23px"}>
-                        <img 
-                            src={SearchIcon}
-                            alt="Search"
-                        />
-                    </IconContainer>
-
                     <RouterLink to={"/profile"}>
                         <IconContainer size={"23px"}>
                             <img 

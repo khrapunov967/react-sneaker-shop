@@ -19,9 +19,11 @@ const FootwearPage = () => {
 
                 <RouterLink>
                     <FlexContainer gap={"5px"} justify={"space-between"}>
-                        <Text color={"#FF3C78"}>
-                            View all
-                        </Text>
+                        <RouterLink to={"/products"}>
+                            <Text color={"#FF3C78"}>
+                                View all
+                            </Text>
+                        </RouterLink>
 
                         <IconContainer size={"17px"}>
                             <img 
