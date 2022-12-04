@@ -34,7 +34,7 @@ const SignInPage = () => {
                         radius={"10px"}
                     />
 
-                    <Button background={'#FF3C78'} border={"solid 1px #FF3C78"} radius={"10px"} padding={"4px 7px"} textColor={"#fff"}>
+                    <Button width={"100%"} background={'#FF3C78'} border={"solid 1px #FF3C78"} radius={"10px"} padding={"4px 7px"} textColor={"#fff"}>
                         Sign In
                     </Button>
                 </form>

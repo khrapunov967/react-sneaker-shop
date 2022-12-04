@@ -7,10 +7,10 @@ import Text from "./styled/Text";
 const ProductCard = () => {
     return (
         <div className="cursor-pointer">
-            <RouterLink to={"/product-id"}>
+            <RouterLink to={"/products/2"}>
                 <FlexContainer direction={"column"} gap={"15px"} items={"flex-start"} width={"fit-content"} maxWidth={"230px"}>
                     <ImageContainer 
-                        src={"https://images.unsplash.com/photo-1608667508764-33cf0726b13a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"}
+                        src={"https://cdn.retailrocket.ru/api/1.0/partner/55379e776636b417f47acd68/item/1117554/picture/?format=png&width=250&height=250&scale=both"}
                         alt={"Nike Shoes"}
                         size={"230px"}
                     />

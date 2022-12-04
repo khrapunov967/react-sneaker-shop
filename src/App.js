@@ -7,6 +7,7 @@ import FootwearPage from "./pages/FootwearPage";
 import SignInPage from "./pages/SignInPage";
 import ProductsPage from "./pages/ProductsPage";
 import SignUpPage from "./pages/SignUpPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/sign-up" element={<SignUpPage />}/>
         <Route path="/sign-in" element={<SignInPage />}/>
         <Route path="/products" element={<ProductsPage />}/>
+        <Route path="/products/:id" element={<ProductDetailsPage />}/>
       </Routes>
 
       <Footer />

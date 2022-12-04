@@ -4,6 +4,7 @@ import styled from "styled-components";
 const StyledFlexContainer = styled.div`
     display: flex;
     margin: ${props => props.margin || "0px 0px 0px 0px"};
+    padding: ${props => props.padding || "none"};
     flex-wrap: ${props => props.wrap || "wrap"};
     width: ${props => props.width || "100%"};
     max-width: ${props => props.maxWidth || "1440px"};
