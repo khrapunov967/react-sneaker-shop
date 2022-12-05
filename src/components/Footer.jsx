@@ -10,7 +10,7 @@ import Text from "./styled/Text";
 const Footer = () => {
     return (
         <footer className="w-full p-10 flex justify-center max-w-[1440px] bg-[#2c2c2c]">
-            <FlexContainer justify={"space-between"}>
+            <FlexContainer justify={"space-between"} maxWidth={"1440px"}>
                 <FlexContainer maxWidth={"300px"} wrap={"no-wrap"} gap={"10px"}>
                     <LogoContainer width={"40px"} height={"39"}>
                         <img 

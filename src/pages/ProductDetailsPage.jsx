@@ -43,7 +43,7 @@ const ProductDetailsPage = () => {
                     />
                 </Slider>
                 
-                <FlexContainer maxWidth={"450px"} direction={"column"} items={"flex-start"} gap={"20px"}>
+                <FlexContainer maxWidth={"450px"} direction={"column"} items={"flex-start"} gap={"30px"}>
                     <Title weight={"600"}>
                         Nike Falcon Shoes for men - 2021 edition
                     </Title>
@@ -70,7 +70,7 @@ const ProductDetailsPage = () => {
                         </FlexContainer>
                     </FlexContainer>
 
-                    <FlexContainer gap={"10px"} wrap={"no-wrap"}>
+                    <FlexContainer gap={"10px"} wrap={"no-wrap"} maxWidth={"100%"}>
                         <ProductCounter />
 
                         <Button textColor={"#fff"} background={"#2c2c2c"} padding={"12px 9px"} width={"100%"} onClick={() => alert("Added")}>

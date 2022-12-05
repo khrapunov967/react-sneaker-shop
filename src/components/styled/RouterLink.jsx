@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const StyledRouterLink = styled(Link)`
+    position: ${props => props.position || "relative"};
     color: ${props => props.color || "#2c2c2c"};
     font-size: 1em;
     font-weight: 600;
