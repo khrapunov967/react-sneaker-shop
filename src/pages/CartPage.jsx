@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import CartProductCard from "../components/CartProductCard";
 import FlexContainer from "../components/styled/FlexContainer";
 import PageLayout from "../components/styled/PageLayout";
@@ -7,6 +8,11 @@ import Title from "../components/styled/Title";
 import Button from "../components/styled/Button";
 
 const CartPage = () => {
+
+    const items = useSelector(state => state.cart.items);
+    const SHIPMENT_PRICE = 10;
+    
+
     return (
         <PageLayout>
             <FlexContainer maxWidth={"80%"} items={"flex-start"} justify={"space-between"} wrap={"no-wrap"}>
@@ -16,12 +22,16 @@ const CartPage = () => {
                     </Title>
 
                     <Text size={"0.9em"} color={"#2c2c2c88"} margin={"0px 0px 30px 0px"}>
-                        Total items: 2
+                        Total items: {items.length}
                     </Text>
 
                     <FlexContainer direction={"column"} items={"flex-start"} gap={"25px"} margin={"0px 0px 30px 0px"}>
-                        <CartProductCard />
-                        <CartProductCard />
+                        {/* <CartProductCard />
+                        <CartProductCard /> */}
+
+                        {
+                            items.map(item => <CartProductCard product={item} key={item.id} />)
+                        }
                     </FlexContainer>
                 </FlexContainer>
 
@@ -48,7 +58,9 @@ const CartPage = () => {
                                 </Text>
 
                                 <Text weight={"500"}>
-                                    $10
+                                    ${
+                                        SHIPMENT_PRICE
+                                    }
                                 </Text>
                             </FlexContainer>
 
@@ -60,7 +72,9 @@ const CartPage = () => {
                                 </Text>
 
                                 <Text weight={"600"} size={"1.5em"}>
-                                    $190
+                                    ${
+                                        0
+                                    }
                                 </Text>
                             </FlexContainer>
 

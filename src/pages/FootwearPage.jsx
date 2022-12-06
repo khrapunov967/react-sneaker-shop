@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import PinkChevron from "../assets/icons/pink-chevron.svg";
 import PageLayout from "../components/styled/PageLayout";
 import FlexContainer from "../components/styled/FlexContainer";
@@ -10,6 +11,9 @@ import ProductCard from "../components/ProductCard";
 import CategoryCard from "../components/CategoryCard";
 
 const FootwearPage = () => {
+
+    const products = useSelector(state => state.products.products);
+
     return (
         <PageLayout>
             <FlexContainer maxWidth={"80%"} justify={"space-between"} margin={"0px 0px 30px 0px"}>
@@ -37,10 +41,9 @@ const FootwearPage = () => {
             </FlexContainer>
 
             <FlexContainer maxWidth={"80%"} gap={"8px"} justify="space-between" margin={"0px 0px 100px 0px"}>
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                {
+                    products.map(product => <ProductCard product={product} key={product.id} />)
+                }
             </FlexContainer>
 
             <FlexContainer direction={"column"} maxWidth={"50%"} margin={"0px 0px 30px 0px"}>

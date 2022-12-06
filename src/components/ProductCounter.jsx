@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "./styled/Button";
 
-const ProductCounter = () => {
-
-    const [count, setCount] = useState(1);
+const ProductCounter = ({count, setCount}) => {
 
     return (
         <div className="flex border-[1px]">

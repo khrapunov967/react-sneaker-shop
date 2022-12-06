@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import ProductCounter from "./ProductCounter";
 import Button from "./styled/Button";
 import FlexContainer from "./styled/FlexContainer";
 import ImageContainer from "./styled/ImageContainer";
 import Text from "./styled/Text";
-import Title from "./styled/Title";
 
-const CartProductCard = () => {
+const CartProductCard = ({product}) => {
+
+    const [count, setCount] = useState(+product.count);
+
     return (
         <div className="w-full">
             <FlexContainer gap={"15px"} items={"flex-start"} wrap={"no-wrap"}>
                 <ImageContainer 
-                    src={"https://cdn.retailrocket.ru/api/1.0/partner/55379e776636b417f47acd68/item/1117554/picture/?format=png&width=250&height=250&scale=both"}
+                    src={product.cover}
                     alt={"Nike Shoes"}
                     size={"260px"}
                 />
@@ -19,20 +21,29 @@ const CartProductCard = () => {
                 <FlexContainer direction={"column"} gap={"30px"} justify={"space-between"} items={"flex-start"} maxWidth={"100%"}>
                     <FlexContainer justify={"space-between"} maxWidth={"100%"}>
                         <Text weight={"600"} size={"1.2em"}>
-                            Nike Falcon Shoes
+                            {
+                                product.title
+                            }
                         </Text>
 
                         <Text weight={"700"} size={"1.2em"}>
-                            $120.50
+                            ${
+                                product.price
+                            }
                         </Text>
                     </FlexContainer>
 
                     <Text size={"1.1em"}>
-                        Size: 3.5
+                        Size: {
+                            product.size
+                        }
                     </Text>
 
                     <FlexContainer justify={"space-between"} maxWidth={"100%"}>
-                        <ProductCounter />
+                        <ProductCounter 
+                            count={count}
+                            setCount={setCount}
+                        />
 
                         <Button textColor={"#FF3C78"} textSize={"1.2em"} border={"none"}>
                             Delete

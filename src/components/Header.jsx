@@ -6,8 +6,12 @@ import FlexContainer from "./styled/FlexContainer";
 import IconContainer from "./styled/IconContainer";
 import LogoContainer from "./styled/LogoContainer";
 import RouterLink from "./styled/RouterLink";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+
+    const count = useSelector(state => state.cart.items.length);
+
     return (
         <header className="w-full flex justify-center p-5 px-[30px] mb-[50px]">
             <FlexContainer justify={"space-between"} items={"center"} maxWidth={"1440px"}>
@@ -52,8 +56,8 @@ const Header = () => {
                             />
                         </IconContainer>
 
-                        <div className={`absolute w-5 h-5 top-3 text-xs left-2 flex justify-center items-center rounded-full text-white bg-red-500`}>
-                            2
+                        <div className={`absolute w-5 h-5 top-3 text-xs left-2 ${count === 0 ? "hidden" : "flex"} justify-center items-center rounded-full text-white bg-red-500`}>
+                            {count}
                         </div>
                     </RouterLink>
                 </FlexContainer>
