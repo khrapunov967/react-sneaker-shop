@@ -25,7 +25,7 @@ const Footer = () => {
                 </FlexContainer>
 
                 <FlexContainer maxWidth={"fit-content"} gap={"15px"}>
-                    <a href="#" target="_blank">
+                    <a href="https://github.com/khrapunov967/react-sneaker-shop" target="_blank">
                         <IconContainer size={"30px"}>
                             <img 
                                 src={GitHubIcon} 

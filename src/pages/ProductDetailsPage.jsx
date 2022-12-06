@@ -13,6 +13,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { addItem } from "../store/cartSlice";
+import { useMemo } from "react";
 
 const settings = {
     dots: true,
@@ -26,10 +27,15 @@ const ProductDetailsPage = () => {
 
     const {id} = useParams();
 
-    const product = useSelector(state => state.products.products.find(item => item.id == id));
+    const product = useSelector(state => state.products.products.find(item => +item.id === +id));
     const dispatch = useDispatch();
 
     const [count, setCount] = useState(1);
+    const [currSize, setCurrSize] = useState(product.sizes[0]);
+
+    const sizes = useMemo(() => {
+        return product.sizes.map(size => <SizeOptionCard sizeTitle={size} sizeValue={size} currSize={currSize} key={size} onClick={() => setCurrSize(size)} />)
+    }, [currSize, product.sizes]);
 
     return (
         <PageLayout>
@@ -66,7 +72,7 @@ const ProductDetailsPage = () => {
 
                         <FlexContainer gap={"7px"}>
                             {
-                                product.sizes.map(size => <SizeOptionCard sizeTitle={size} sizeValue={size} key={size} />)
+                                sizes
                             }
                         </FlexContainer>
                     </FlexContainer>
@@ -77,7 +83,7 @@ const ProductDetailsPage = () => {
                             setCount={setCount}
                         />
 
-                        <Button textColor={"#fff"} background={"#2c2c2c"} padding={"12px 9px"} width={"100%"} onClick={() => dispatch(addItem({id, title: product.shortTitle, price: product.price, cover: product.cover, size: 4.5, count}))}>
+                        <Button textColor={"#fff"} background={"#2c2c2c"} padding={"12px 9px"} width={"100%"} onClick={() => dispatch(addItem({id, title: product.shortTitle, price: product.price, cover: product.cover, size: currSize, count}))}>
                             Add to cart
                         </Button>
                     </FlexContainer>

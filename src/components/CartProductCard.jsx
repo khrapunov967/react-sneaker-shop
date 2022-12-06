@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { changeItemCount, removeItem } from "../store/cartSlice";
 import ProductCounter from "./ProductCounter";
 import Button from "./styled/Button";
 import FlexContainer from "./styled/FlexContainer";
@@ -8,13 +10,18 @@ import Text from "./styled/Text";
 const CartProductCard = ({product}) => {
 
     const [count, setCount] = useState(+product.count);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(changeItemCount({id: product.id, newCount: count}));
+    }, [count]);
 
     return (
         <div className="w-full">
             <FlexContainer gap={"15px"} items={"flex-start"} wrap={"no-wrap"}>
                 <ImageContainer 
                     src={product.cover}
-                    alt={"Nike Shoes"}
+                    alt={"shoes photo"}
                     size={"260px"}
                 />
 
@@ -45,7 +52,7 @@ const CartProductCard = ({product}) => {
                             setCount={setCount}
                         />
 
-                        <Button textColor={"#FF3C78"} textSize={"1.2em"} border={"none"}>
+                        <Button textColor={"#FF3C78"} textSize={"1.2em"} border={"none"} onClick={() => dispatch(removeItem({id: product.id}))}>
                             Delete
                         </Button>
                     </FlexContainer>

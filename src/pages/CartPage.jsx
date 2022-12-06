@@ -11,7 +11,8 @@ const CartPage = () => {
 
     const items = useSelector(state => state.cart.items);
     const SHIPMENT_PRICE = 10;
-    
+    let itemsPrice = items.reduce((sum, curr) => +sum + (+curr.price * +curr.count), 0);
+    let totalPrice = SHIPMENT_PRICE + itemsPrice;
 
     return (
         <PageLayout>
@@ -26,9 +27,6 @@ const CartPage = () => {
                     </Text>
 
                     <FlexContainer direction={"column"} items={"flex-start"} gap={"25px"} margin={"0px 0px 30px 0px"}>
-                        {/* <CartProductCard />
-                        <CartProductCard /> */}
-
                         {
                             items.map(item => <CartProductCard product={item} key={item.id} />)
                         }
@@ -48,7 +46,9 @@ const CartPage = () => {
                                 </Text>
 
                                 <Text weight={"500"}>
-                                    $180
+                                    ${
+                                        itemsPrice
+                                    }
                                 </Text>
                             </FlexContainer>
 
@@ -64,7 +64,7 @@ const CartPage = () => {
                                 </Text>
                             </FlexContainer>
 
-                            <div className="h-[0.5px] bg-[#2c2c2c33] w-full" />
+                            <div className="h-[1px] bg-[#2c2c2c33] w-full" />
 
                             <FlexContainer justify={"space-between"} maxWidth={"100%"}>
                                 <Text weight={"500"}>
@@ -73,7 +73,7 @@ const CartPage = () => {
 
                                 <Text weight={"600"} size={"1.5em"}>
                                     ${
-                                        0
+                                        totalPrice
                                     }
                                 </Text>
                             </FlexContainer>
