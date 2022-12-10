@@ -39,7 +39,7 @@ const Header = () => {
                 </FlexContainer>
 
                 <FlexContainer justify={"space-between"} width={"fit-content"} gap={"25px"}>
-                    <RouterLink to={"/sign-up"}>
+                    <RouterLink to={"/profile"}>
                         <IconContainer size={"23px"}>
                             <img 
                                 src={PersonIcon}

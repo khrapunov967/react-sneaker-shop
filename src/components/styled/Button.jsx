@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const StyledButton = styled.button`
     width: ${props => props.width || "fit-content"};
+    max-width: ${props => props.maxWidth || "none"};
     border: ${props => props.border || "solid 1px #2c2c2c44"};
     background: ${props => props.background || "transparent"};
     color: ${props => props.textColor || "#2c2c2c"};

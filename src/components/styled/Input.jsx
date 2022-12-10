@@ -10,14 +10,14 @@ const StyledInput = styled.input`
     background: ${props => props.background || "transparent"};
 `;
 
-const Input = ({placeholder, name, value, setValue, type, ...props}) => {
+const Input = ({placeholder, name, value, onChange, type, ...props}) => {
     return (
         <StyledInput 
             {...props}
             placeholder={placeholder}
             name={name}
             value={value}
-            onChange={setValue}
+            onChange={onChange}
             type={type}
         />
     );
