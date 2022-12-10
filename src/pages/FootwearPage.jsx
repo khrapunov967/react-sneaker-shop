@@ -57,8 +57,7 @@ const FootwearPage = () => {
                 </Text>
             </FlexContainer>
 
-            <FlexContainer maxWidth={"80%"} gap={"8px"} justify="space-between" margin={"0px 0px 100px 0px"}>
-                <CategoryCard />
+            <FlexContainer maxWidth={"55%"} gap={"8px"} justify="space-between" margin={"0px 0px 100px 0px"}>
                 <CategoryCard />
                 <CategoryCard />
                 <CategoryCard />
