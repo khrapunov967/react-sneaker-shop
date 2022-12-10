@@ -24,9 +24,8 @@ const cartSlice = createSlice({
 
         changeItemCount(state, action) {
             const item = state.items.find(val => val.id === action.payload.id);
-
             item.count = action.payload.newCount;
-
+            
             localStorage.setItem("cart", JSON.stringify(state.items));
         },
 
