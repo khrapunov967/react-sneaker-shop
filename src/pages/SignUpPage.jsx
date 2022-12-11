@@ -2,6 +2,8 @@ import React, { useState} from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../firebase";
 import { useDispatch } from "react-redux";
+import { addUser } from "../store/userSlice";
+import { useNavigate } from "react-router-dom";
 import PageLayout from "../components/styled/PageLayout";
 import FlexContainer from "../components/styled/FlexContainer";
 import Title from "../components/styled/Title";
@@ -9,7 +11,6 @@ import Input from "../components/styled/Input";
 import Button from "../components/styled/Button";
 import Text from "../components/styled/Text";
 import RouterLink from "../components/styled/RouterLink";
-import { addUser } from "../store/userSlice";
 
 const SignUpPage = () => {
 
@@ -17,6 +18,8 @@ const SignUpPage = () => {
     const [password, setPassword] = useState("");
 
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const handleSignUp = (e, email, password) => {
         e.preventDefault();
@@ -28,7 +31,9 @@ const SignUpPage = () => {
                     email: user.email,
                     id: user.uid,
                     token: user.accessToken
-                }))
+                }));
+
+                navigate("/profile");
             })
             .catch((reason) => console.log(reason))
     };

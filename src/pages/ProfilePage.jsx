@@ -6,14 +6,15 @@ import PageLayout from "../components/styled/PageLayout";
 import FlexContainer from "../components/styled/FlexContainer";
 import Text from "../components/styled/Text";
 import Button from "../components/styled/Button";
-import SignUpPage from "./SignUpPage";
+import { Navigate } from "react-router-dom";
 
 const ProfilePage = () => {
 
     const { isAuth, email } = useAuth();
     const dispatch = useDispatch();
 
-    return !isAuth ? <SignUpPage /> : (
+
+    return (!isAuth) ? <Navigate to={"/sign-up"} /> : (
         <PageLayout>
             <FlexContainer maxWidth={"80%"} direction={"column"} gap={"30px"} justify={"center"} margin={"0px 0px 30px 0px"}>
                 <Text color={"#2c2c2c"} size={"1.4em"}>
