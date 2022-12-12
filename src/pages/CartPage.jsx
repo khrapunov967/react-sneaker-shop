@@ -1,11 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 import CartProductCard from "../components/CartProductCard";
 import FlexContainer from "../components/styled/FlexContainer";
 import PageLayout from "../components/styled/PageLayout";
 import Text from "../components/styled/Text";
 import Title from "../components/styled/Title";
 import Button from "../components/styled/Button";
+import { clearCart } from "../store/cartSlice";
 
 const CartPage = () => {
 
@@ -13,6 +16,23 @@ const CartPage = () => {
     const SHIPMENT_PRICE = 10;
     let itemsPrice = items.reduce((sum, curr) => +sum + (+curr.price * +curr.count), 0);
     let totalPrice = SHIPMENT_PRICE + itemsPrice;
+
+    const {isAuth} = useAuth();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const order = () => {
+        if (isAuth) {
+            if (items.length) {
+                dispatch(clearCart());
+                alert("Ordered");
+            }
+
+        } else {
+            navigate("/sign-up");
+        }
+        
+    }
 
     return (
         <PageLayout>
@@ -78,7 +98,7 @@ const CartPage = () => {
                                 </Text>
                             </FlexContainer>
 
-                            <Button textColor={"#fff"} background={"#2c2c2c"} padding={"12px 9px"} width={"100%"} radius={"10px"} onClick={() => alert("Ordered")}>
+                            <Button textColor={"#fff"} background={"#2c2c2c"} padding={"12px 9px"} width={"100%"} radius={"10px"} onClick={order}>
                                 Order
                             </Button>
                         </FlexContainer>

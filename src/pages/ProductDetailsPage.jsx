@@ -42,7 +42,7 @@ const ProductDetailsPage = () => {
             <FlexContainer padding={"0px 0px 0px 60px"} maxWidth={"80%"} justify={"space-between"} items={"flex-start"} margin={"0px 0px 30px 0px"}>
                 <Slider {...settings} className={"w-[400px] flex outline-none"}>
                     {
-                        product.detailedImages.map(src => <ImageContainer src={src} alt={"sneaker photo"} size={"400px"} key={src} />)
+                        product.detailedImages.map(src => <img src={src} alt={"sneaker"} key={src} />)
                     }
                 </Slider>
                 
