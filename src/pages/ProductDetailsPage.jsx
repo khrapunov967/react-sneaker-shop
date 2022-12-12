@@ -14,6 +14,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { addItem } from "../store/cartSlice";
 import { useMemo } from "react";
+import { useScreenWidth } from "../hooks/useScreenWidth";
 
 const settings = {
     dots: true,
@@ -33,16 +34,18 @@ const ProductDetailsPage = () => {
     const [count, setCount] = useState(1);
     const [currSize, setCurrSize] = useState(product.sizes[0]);
 
+    const screenWidth = useScreenWidth();
+
     const sizes = useMemo(() => {
         return product.sizes.map(size => <SizeOptionCard sizeTitle={size} sizeValue={size} currSize={currSize} key={size} onClick={() => setCurrSize(size)} />)
     }, [currSize, product.sizes]);
 
     return (
         <PageLayout>
-            <FlexContainer padding={"0px 0px 0px 60px"} maxWidth={"80%"} justify={"space-between"} items={"flex-start"} margin={"0px 0px 30px 0px"}>
-                <Slider {...settings} className={"w-[400px] flex outline-none"}>
+            <FlexContainer padding={"0px 0px 0px 0px"} maxWidth={"80%"} justify={screenWidth < 1140 ? "center" : "space-between"} items={"flex-start"} gap={"30px"} margin={"0px 0px 30px 0px"}>
+                <Slider {...settings} className={"w-full max-w-[400px] flex outline-none max-md-screen:mb-[30px]"}>
                     {
-                        product.detailedImages.map(src => <img src={src} alt={"sneaker"} key={src} />)
+                        product.detailedImages.map(src => <img src={src} className={"w-full"} alt={"sneaker"} key={src} />)
                     }
                 </Slider>
                 
@@ -65,19 +68,19 @@ const ProductDetailsPage = () => {
                         }
                     </Text>
 
-                    <FlexContainer>
+                    <FlexContainer justify={screenWidth < 509 ? "center" : "flex-start"}>
                         <Text weight={"600"} size={"1.1em"} margin={"0px 0px 5px 0px"}>
                             Select size
                         </Text>
 
-                        <FlexContainer gap={"7px"}>
+                        <FlexContainer gap={"7px"} justify={screenWidth < 509 ? "center" : "flex-start"}>
                             {
                                 sizes
                             }
                         </FlexContainer>
                     </FlexContainer>
 
-                    <FlexContainer gap={"10px"} wrap={"no-wrap"} maxWidth={"100%"}>
+                    <FlexContainer gap={"10px"} wrap={screenWidth < 509 ? "wrap" : "no-wrap"} maxWidth={"100%"} justify={screenWidth < 509 ? "center" : "flex-start"}>
                         <ProductCounter 
                             count={count}
                             setCount={setCount}

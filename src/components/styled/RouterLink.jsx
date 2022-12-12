@@ -15,9 +15,9 @@ const StyledRouterLink = styled(Link)`
     }
 `;
 
-const RouterLink = ({children, to}) => {
+const RouterLink = ({children, to, ...props}) => {
     return (
-        <StyledRouterLink>
+        <StyledRouterLink {...props}>
             <Link to={to}>
                 {children}
             </Link>
