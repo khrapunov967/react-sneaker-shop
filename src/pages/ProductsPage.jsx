@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import FlexContainer from "../components/styled/FlexContainer";
 import PageLayout from "../components/styled/PageLayout";
@@ -6,36 +6,55 @@ import Title from "../components/styled/Title";
 import SearchBar from "../components/SearchBar";
 import Select from "../components/styled/Select";
 import ProductCard from "../components/ProductCard";
+import NotFoundMsg from "../components/NotFoundMsg";
 
 const ProductsPage = () => {
 
+    const [searchQuery, setSearchQuery] = useState("");
+    const [selectValue, setSelectValue] = useState("");
     const products = useSelector(state => state.products.products);
+
+    const filteredProducts = useMemo(() => {
+        return products.filter((product) => {
+            if (product.longTitle.toLowerCase().includes(searchQuery.toLowerCase().trim()) && product.category.includes(selectValue)) {
+                return product;
+            }
+        });
+    }, [searchQuery, products, selectValue]);
+
 
     return (
         <PageLayout>
-             <FlexContainer maxWidth={"80%"} justify={"space-between"} margin={"0px 0px 30px 0px"}>
+            <FlexContainer maxWidth={"80%"} justify={"space-between"} margin={"0px 0px 60px 0px"}>
                 <Title size={"1.7em"}>
                     All Sneakers
                 </Title>
 
                 <FlexContainer maxWidth={"fit-content"} gap={"5px"}>
-                    <SearchBar />
+                    <SearchBar
+                        query={searchQuery}
+                        setQuery={setSearchQuery}
+                    />
 
-                    <Select 
-                        textSize={"1.3em"} 
-                        padding={"1px 2px 1px 2px"} 
+                    <Select
+                        value={"Football"}
+                        setValue={setSelectValue}
+                        textSize={"1.3em"}
+                        padding={"1px 2px 1px 2px"}
                         options={[
-                            {id: 1, value: "FIRST", name: "First"},
-                            {id: 2, value: "SECOND", name: "Second"},
-                            {id: 3, value: "THIRD", name: "Third"},
+                            { id: 0, value: "", name: "All" },
+                            { id: 1, value: "FOOTBALL", name: "Football" },
+                            { id: 2, value: "BASKETBALL", name: "Basketball" },
+                            { id: 3, value: "RUNNING", name: "Running" },
                         ]}
-                    />              
+                    />
                 </FlexContainer>
             </FlexContainer>
 
-            <FlexContainer maxWidth={"80%"} gap={"8px"} justify="space-between" margin={"0px 0px 100px 0px"}>
+            <FlexContainer maxWidth={"85%"} gap={"40px"} justify="center" margin={"0px 0px 100px 0px"}>
                 {
-                    products.map(product => <ProductCard product={product} key={product.id} />)
+                    !filteredProducts.length ? <NotFoundMsg msg={"Не найдено"} /> :
+                        filteredProducts.map(product => <ProductCard product={product} key={product.id} />)
                 }
             </FlexContainer>
         </PageLayout>

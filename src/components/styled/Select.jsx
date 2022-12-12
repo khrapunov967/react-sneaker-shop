@@ -14,21 +14,18 @@ const StyledSelect = styled.input`
     outline: none;
 `;
 
-const Select = ({options, ...props}) => {
+const Select = ({options, value, setValue,  ...props}) => {
 
-    const [state, setState] = useState({
-        isVisible: false,
-        title: options[0].name,
-        value: options[0].value
-    });
+    const [visible, setVisible] = useState(false);
+    const [title, setTitle] = useState(options[0].name);
 
     return (
-        <div className="" onClick={() => setState({...state, isVisible: !state.isVisible})}>
+        <div className="" onClick={() => setVisible(state => !state)}>
             <div className="border-[1px] rounded-xl py-1 px-2 relative">
                 <FlexContainer width={"100%"} maxWidth={"fit-content"}>
                     <StyledSelect 
                         {...props} 
-                        value={state.title}
+                        value={title}
                         readOnly={true}
                         options={options}
                     />
@@ -37,13 +34,16 @@ const Select = ({options, ...props}) => {
                         <img 
                             src={DownChevron} 
                             alt="chevron" 
-                            className={`${state.isVisible ? "rotate-180" : ""} transition-all duration-300`}
+                            className={`${visible ? "rotate-180" : ""} transition-all duration-300`}
                         />
                     </IconContainer>
 
-                    <div className={`absolute top-12 left-0 border-[1px] w-full rounded-xl bg-[#fff] z-10 ${state.isVisible ? "" : "hidden"}`}>
+                    <div className={`absolute top-12 left-0 border-[1px] w-full rounded-xl bg-[#fff] z-10 ${visible ? "" : "hidden"}`}>
                         {
-                            options.map(option => <Option option={option} key={option.id} />)
+                            options.map(option => <Option option={option} key={option.id} onClick={() => {
+                                setValue(option.value);
+                                setTitle(option.name);
+                            }} />)
                         }
                     </div>
                 </FlexContainer>

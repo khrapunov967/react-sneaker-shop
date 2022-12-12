@@ -4,7 +4,7 @@ import SearchIcon from "../assets/icons/search-icon.svg";
 import IconContainer from "./styled/IconContainer";
 import Input from "./styled/Input";
 
-const SearchBar = () => {
+const SearchBar = ({query, setQuery}) => {
     return (
         <div className="border-[1px] py-1 px-2 rounded-xl">
             <FlexContainer gap={"5px"}>
@@ -19,6 +19,8 @@ const SearchBar = () => {
                     placeholder={"Search sneaker..."}
                     textSize={"1.3em"}
                     type={"text"}
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
                 />
             </FlexContainer>
         </div>

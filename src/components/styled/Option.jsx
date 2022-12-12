@@ -13,7 +13,7 @@ const StyledOption = styled.option`
 
 const Option = ({option, ...props}) => {
     return (
-        <StyledOption value={option.value}>
+        <StyledOption value={option.value} {...props}>
             {option.name}
         </StyledOption>
     );
