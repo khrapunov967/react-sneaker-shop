@@ -1,6 +1,7 @@
 import React, { useState} from "react";
+import { collection, addDoc } from "firebase/firestore"; 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { app } from "../firebase";
+import { app, db } from "../firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../store/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -14,24 +15,28 @@ import RouterLink from "../components/styled/RouterLink";
 
 const SignUpPage = () => {
 
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     const dispatch = useDispatch();
-
     const navigate = useNavigate();
 
-    const handleSignUp = (e, email, password) => {
+    const handleSignUp = (e, name, email, password) => {
         e.preventDefault();
         const auth = getAuth(app);
 
         createUserWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
                 dispatch(addUser({
-                    email: user.email,
-                    id: user.uid,
-                    token: user.accessToken
+                    userId: user.uid,
                 }));
+
+                addDoc(collection(db, "users"), {
+                    id: user.uid,
+                    name,
+                    cart: JSON.parse(localStorage.getItem("cart")) || []
+                }).then((docRef) => console.log(`User add with id=${docRef.id}`))
+
 
                 navigate("/profile");
             })
@@ -46,6 +51,17 @@ const SignUpPage = () => {
                 </Title>
 
                 <form action="#" className="flex flex-col gap-2 mb-2">
+                    <Input 
+                        type={"text"}
+                        placeholder={"Name"}
+                        border={"solid 1px #2c2c2c44"}
+                        padding={"4px 7px"}
+                        textSize={"1.1em"}
+                        radius={"10px"}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+
                     <Input 
                         type={"email"}
                         placeholder={"Email"}
@@ -68,7 +84,7 @@ const SignUpPage = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
 
-                    <Button width={"100%"} background={'#FF3C78'} border={"solid 1px #FF3C78"} radius={"10px"} padding={"4px 7px"} textColor={"#fff"} onClick={(e) => handleSignUp(e, email, password)}>
+                    <Button width={"100%"} background={'#FF3C78'} border={"solid 1px #FF3C78"} radius={"10px"} padding={"4px 7px"} textColor={"#fff"} onClick={(e) => handleSignUp(e, name, email, password)}>
                         Sign Up
                     </Button>
                 </form>

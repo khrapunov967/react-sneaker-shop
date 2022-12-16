@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -10,8 +10,20 @@ import SignUpPage from "./pages/SignUpPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import CartPage from "./pages/CartPage";
 import ProfilePage from "./pages/ProfilePage";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "./store/productsSlice";
+import { fetchCartByUserId } from "./store/cartSlice";
 
 function App() {
+
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+    dispatch(fetchCartByUserId(user.userId));
+  }, []);
+
   return (
     <RootLayout>
       <Header />

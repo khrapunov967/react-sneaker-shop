@@ -1,4 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import FirestoreService from "../services/FirestoreService";
+
+export const fetchCartByUserId = createAsyncThunk(
+    "cart/fetchCartByUserId",
+    async (userId) => {
+        const cart = await FirestoreService.getCartByUserId(userId);
+        return cart;
+    }
+)
 
 const cartSlice = createSlice({
     name: "cart",
@@ -37,6 +46,11 @@ const cartSlice = createSlice({
         clearCart(state) {
             state.items = [];
             localStorage.setItem("cart", JSON.stringify(state.items));
+        }
+    },
+    extraReducers: {
+        [fetchCartByUserId.fulfilled]: (state, action) => {
+            state.items = action.payload;
         }
     }
 });

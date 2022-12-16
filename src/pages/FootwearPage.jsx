@@ -9,10 +9,11 @@ import IconContainer from "../components/styled/IconContainer";
 import Text from "../components/styled/Text";
 import ProductCard from "../components/ProductCard";
 import CategoryCard from "../components/CategoryCard";
+import Loader from "../components/Loader";
 
 const FootwearPage = () => {
 
-    const products = useSelector(state => state.products.products);
+    const {products, isFetching} = useSelector(state => state.products);
 
     return (
         <PageLayout>
@@ -42,6 +43,7 @@ const FootwearPage = () => {
 
             <FlexContainer maxWidth={"80%"} gap={"8px"} justify="space-between" margin={"0px 0px 100px 0px"}>
                 {
+                    isFetching ? <Loader /> : 
                     products.map(product => <ProductCard product={product} key={product.id} />)
                 }
             </FlexContainer>

@@ -1,24 +1,54 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import FirestoreService from "../services/FirestoreService";
+// import { getAuth } from "firebase/auth";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
+// import { app } from "../firebase";
+
+// export const signUpUser = createAsyncThunk(
+//     "user/signUpUser",
+//     async (name, email, password) => {
+//         const auth = getAuth(app);
+
+//         const {user} = await createUserWithEmailAndPassword(auth, email, password).catch((err) => console.log(err));
+
+//         return {
+//             name,
+//             id: user.uid,
+//             email: user.email
+//         }
+//     }
+// )
+
+export const fetchUserData = createAsyncThunk(
+    "user/fetchUserData",
+    async (userId) => {
+        const { name } = await FirestoreService.getUserById(userId).catch((er) => console.log(er));
+        return name;
+    } 
+)
+
 
 
 const userSlice = createSlice({
     name: "user",
     initialState: {
-        email: null,
-        id: null,
-        token: null
+        userId: JSON.parse(localStorage.getItem("userId")),
+        name: "",
     },
     reducers: {
         addUser(state, action) {
-            state.email = action.payload.email;
-            state.id = action.payload.id;
-            state.token = action.payload.token;
+            state.userId = action.payload.userId;
+            localStorage.setItem("userId", JSON.stringify(action.payload.userId));
         },
 
         removeUser(state) {
-            state.email = null;
-            state.id = null;
-            state.token = null;
+            state.userId = null;
+            localStorage.setItem("userId", JSON.stringify(null));
+        }
+    },
+    extraReducers: {
+        [fetchUserData.fulfilled]: (state, action) => {
+            state.name = action.payload;
         }
     }
 });

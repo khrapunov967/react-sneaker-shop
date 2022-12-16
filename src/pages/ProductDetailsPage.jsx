@@ -68,7 +68,7 @@ const ProductDetailsPage = () => {
                         }
                     </Text>
 
-                    <FlexContainer justify={screenWidth < 509 ? "center" : "flex-start"}>
+                    <FlexContainer direction={"column"} items={"flex-start"} justify={screenWidth < 509 ? "center" : "flex-start"}>
                         <Text weight={"600"} size={"1.1em"} margin={"0px 0px 5px 0px"}>
                             Select size
                         </Text>

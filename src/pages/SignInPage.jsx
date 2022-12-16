@@ -29,9 +29,7 @@ const SignInPage = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
                 dispatch(addUser({
-                    email: user.email,
-                    id: user.uid,
-                    token: user.accessToken
+                    userId: user.uid,
                 }));
 
                 navigate("/profile");
