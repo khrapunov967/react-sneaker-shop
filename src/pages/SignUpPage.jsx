@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, doc, setDoc } from "firebase/firestore"; 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app, db } from "../firebase";
 import { useDispatch } from "react-redux";
@@ -31,11 +31,11 @@ const SignUpPage = () => {
                     userId: user.uid,
                 }));
 
-                addDoc(collection(db, "users"), {
+                setDoc(doc(db, "users", user.uid), {
                     id: user.uid,
                     name,
                     cart: JSON.parse(localStorage.getItem("cart")) || []
-                }).then((docRef) => console.log(`User add with id=${docRef.id}`))
+                }).then((docRef) => console.log(`User added with id=${docRef.id}`))
 
 
                 navigate("/profile");

@@ -9,6 +9,8 @@ import Text from "../components/styled/Text";
 import Title from "../components/styled/Title";
 import Button from "../components/styled/Button";
 import { clearCart } from "../store/cartSlice";
+import { useEffect } from "react";
+import FirestoreService from "../services/FirestoreService";
 
 const CartPage = () => {
 
@@ -17,9 +19,13 @@ const CartPage = () => {
     let itemsPrice = items.reduce((sum, curr) => +sum + (+curr.price * +curr.count), 0);
     let totalPrice = SHIPMENT_PRICE + itemsPrice;
 
-    const {isAuth} = useAuth();
+    const { isAuth, userId } = useAuth();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     FirestoreService.setCart(userId, items);
+    // }, [items, userId])
 
     const order = () => {
         if (isAuth) {

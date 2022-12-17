@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import FirestoreService from "./services/FirestoreService";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -17,11 +18,18 @@ import { fetchCartByUserId } from "./store/cartSlice";
 function App() {
 
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user);
+  const { userId } = useSelector(state => state.user);
+  const items = useSelector(state => state.cart.items);
+
+  // useEffect(() => {
+  //   FirestoreService.setCart(userId, JSON.parse(localStorage.getItem("cart")));
+  //   console.log("SET CART")
+  // }, [items, userId])
 
   useEffect(() => {
     dispatch(fetchProducts());
-    dispatch(fetchCartByUserId(user.userId));
+    dispatch(fetchCartByUserId(userId));
+    console.log("FETCHED CART AND USER DATA")
   }, []);
 
   return (

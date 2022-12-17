@@ -5,6 +5,6 @@ export const useAuth = () => {
 
     return {
         isAuth: !!userId,
-        userId
+        userId,
     }
 };

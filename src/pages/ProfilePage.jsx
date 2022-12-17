@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData, removeUser } from "../store/userSlice";
@@ -7,7 +7,6 @@ import FlexContainer from "../components/styled/FlexContainer";
 import Text from "../components/styled/Text";
 import Button from "../components/styled/Button";
 import { Navigate } from "react-router-dom";
-import FirestoreService from "../services/FirestoreService";
 
 const ProfilePage = () => {
 

@@ -4,15 +4,19 @@ import FirestoreService from "../services/FirestoreService";
 export const fetchCartByUserId = createAsyncThunk(
     "cart/fetchCartByUserId",
     async (userId) => {
-        const cart = await FirestoreService.getCartByUserId(userId);
-        return cart;
+        if (userId) {
+            const cart = await FirestoreService.getCartByUserId(userId);
+            return cart;
+        } else {
+            return JSON.parse(localStorage.getItem("cart")) || [];
+        }
     }
 )
 
 const cartSlice = createSlice({
     name: "cart",
     initialState: {
-        items: JSON.parse(localStorage.getItem("cart")) ?? [],
+        items: [],
     },
     reducers: {
         addItem(state, action) {
@@ -27,7 +31,6 @@ const cartSlice = createSlice({
             };
 
             state.items.push(newItem);
-
             localStorage.setItem("cart", JSON.stringify(state.items));
         },
 
