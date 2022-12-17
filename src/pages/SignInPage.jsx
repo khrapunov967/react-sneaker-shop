@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../firebase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../store/userSlice";
 import { useNavigate } from "react-router-dom";
+import FirestoreService from "../services/FirestoreService";
 import PageLayout from "../components/styled/PageLayout";
 import FlexContainer from "../components/styled/FlexContainer";
 import Title from "../components/styled/Title";
@@ -17,8 +18,9 @@ const SignInPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const dispatch = useDispatch();
+    const cart = useSelector(state => state.user.cart);
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleSignIn = (e, email, password) => {
@@ -31,6 +33,8 @@ const SignInPage = () => {
                 dispatch(addUser({
                     userId: user.uid,
                 }));
+
+                FirestoreService.setCart(user.uid, cart);
 
                 navigate("/profile");
             })
