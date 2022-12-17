@@ -11,7 +11,7 @@ import RouterLink from "./styled/RouterLink";
 
 const Header = () => {
 
-    const count = useSelector(state => state.cart.items.length);
+    const count = useSelector(state => state.user.cart.length);
 
     const screenWidth = useScreenWidth();
 

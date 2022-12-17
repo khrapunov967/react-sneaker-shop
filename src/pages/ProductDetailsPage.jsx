@@ -12,7 +12,7 @@ import Title from "../components/styled/Title";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import { addItem } from "../store/cartSlice";
+import { addItemToCart } from "../store/userSlice";
 import { useMemo } from "react";
 import { useScreenWidth } from "../hooks/useScreenWidth";
 
@@ -86,7 +86,7 @@ const ProductDetailsPage = () => {
                             setCount={setCount}
                         />
 
-                        <Button textColor={"#fff"} background={"#2c2c2c"} padding={"12px 9px"} width={"100%"} onClick={() => dispatch(addItem({id, title: product.shortTitle, price: product.price, cover: product.cover, size: currSize, count}))}>
+                        <Button textColor={"#fff"} background={"#2c2c2c"} padding={"12px 9px"} width={"100%"} onClick={() => dispatch(addItemToCart({id, title: product.shortTitle, price: product.price, cover: product.cover, size: currSize, count}))}>
                             Add to cart
                         </Button>
                     </FlexContainer>

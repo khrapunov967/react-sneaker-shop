@@ -8,15 +8,15 @@ import PageLayout from "../components/styled/PageLayout";
 import Text from "../components/styled/Text";
 import Title from "../components/styled/Title";
 import Button from "../components/styled/Button";
-import { clearCart } from "../store/cartSlice";
+import { clearCart } from "../store/userSlice";
 import { useEffect } from "react";
 import FirestoreService from "../services/FirestoreService";
 
 const CartPage = () => {
 
-    const items = useSelector(state => state.cart.items);
+    const cart = useSelector(state => state.user.cart);
     const SHIPMENT_PRICE = 10;
-    let itemsPrice = items.reduce((sum, curr) => +sum + (+curr.price * +curr.count), 0);
+    let itemsPrice = cart.reduce((sum, curr) => +sum + (+curr.price * +curr.count), 0);
     let totalPrice = SHIPMENT_PRICE + itemsPrice;
 
     const { isAuth, userId } = useAuth();
@@ -29,7 +29,7 @@ const CartPage = () => {
 
     const order = () => {
         if (isAuth) {
-            if (items.length) {
+            if (cart.length) {
                 dispatch(clearCart());
                 alert("Ordered");
             }
@@ -49,12 +49,12 @@ const CartPage = () => {
                     </Title>
 
                     <Text size={"0.9em"} color={"#2c2c2c88"} margin={"0px 0px 30px 0px"}>
-                        Total items: {items.length}
+                        Total items: {cart.length}
                     </Text>
 
                     <FlexContainer direction={"column"} items={"flex-start"} gap={"25px"} margin={"0px 0px 30px 0px"}>
                         {
-                            items.map(item => <CartProductCard product={item} key={item.id} />)
+                            cart.map(item => <CartProductCard product={item} key={item.id} />)
                         }
                     </FlexContainer>
                 </FlexContainer>

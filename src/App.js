@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
-import FirestoreService from "./services/FirestoreService";
+import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
+import { fetchProducts } from "./store/productsSlice";
+import FirestoreService from "./services/FirestoreService";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import RootLayout from "./components/styled/RootLayout";
@@ -11,15 +13,11 @@ import SignUpPage from "./pages/SignUpPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import CartPage from "./pages/CartPage";
 import ProfilePage from "./pages/ProfilePage";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "./store/productsSlice";
-import { fetchCartByUserId } from "./store/cartSlice";
 
 function App() {
 
   const dispatch = useDispatch();
-  const { userId } = useSelector(state => state.user);
-  const items = useSelector(state => state.cart.items);
+  // const { userId } = useSelector(state => state.user);
 
   // useEffect(() => {
   //   FirestoreService.setCart(userId, JSON.parse(localStorage.getItem("cart")));
@@ -28,7 +26,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchProducts());
-    dispatch(fetchCartByUserId(userId));
+    // dispatch(fetchCartByUserId(userId));
     console.log("FETCHED CART AND USER DATA")
   }, []);
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { changeItemCount, removeItem } from "../store/cartSlice";
+import { changeItemCountInCart, removeItemFromCart } from "../store/userSlice";
 import ProductCounter from "./ProductCounter";
 import Button from "./styled/Button";
 import FlexContainer from "./styled/FlexContainer";
@@ -13,7 +13,7 @@ const CartProductCard = ({product}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(changeItemCount({id: product.id, newCount: count}));
+        dispatch(changeItemCountInCart({id: product.id, newCount: count}));
     }, [count]);
 
     return (
@@ -52,7 +52,7 @@ const CartProductCard = ({product}) => {
                             setCount={setCount}
                         />
 
-                        <Button textColor={"#FF3C78"} textSize={"1.2em"} border={"none"} onClick={() => dispatch(removeItem({id: product.id}))}>
+                        <Button textColor={"#FF3C78"} textSize={"1.2em"} border={"none"} onClick={() => dispatch(removeItemFromCart({id: product.id}))}>
                             Delete
                         </Button>
                     </FlexContainer>
