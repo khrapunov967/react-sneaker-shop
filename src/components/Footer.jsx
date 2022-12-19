@@ -6,11 +6,15 @@ import FlexContainer from "./styled/FlexContainer";
 import IconContainer from "./styled/IconContainer";
 import LogoContainer from "./styled/LogoContainer";
 import Text from "./styled/Text";
+import { useScreenWidth } from "../hooks/useScreenWidth";
 
 const Footer = () => {
+
+    const screenWidth = useScreenWidth();
+
     return (
         <footer className="w-full p-10 flex justify-center max-w-[1440px] bg-[#2c2c2c]">
-            <FlexContainer justify={"space-between"} maxWidth={"1440px"}>
+            <FlexContainer justify={"space-between"} maxWidth={"1440px"} wrap={"no-wrap"}>
                 <FlexContainer maxWidth={"300px"} wrap={"no-wrap"} gap={"10px"}>
                     <LogoContainer width={"40px"} height={"39"}>
                         <img 
@@ -19,7 +23,7 @@ const Footer = () => {
                         />
                     </LogoContainer>
 
-                    <Text size={"0.8em"} color={"#fff"}>
+                    <Text size={"0.8em"} color={"#fff"} display={screenWidth < 581 ? "none" : "block"}>
                         Our shop is the best choice for buying footwear.
                     </Text>
                 </FlexContainer>

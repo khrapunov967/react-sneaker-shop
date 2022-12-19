@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useScreenWidth } from "../hooks/useScreenWidth";
 import { changeItemCountInCart, removeItemFromCart } from "../store/userSlice";
 import ProductCounter from "./ProductCounter";
 import Button from "./styled/Button";
@@ -11,6 +12,7 @@ const CartProductCard = ({product}) => {
 
     const [count, setCount] = useState(+product.count);
     const dispatch = useDispatch();
+    const screenWidth = useScreenWidth();
 
     useEffect(() => {
         dispatch(changeItemCountInCart({id: product.id, newCount: count}));
@@ -18,7 +20,7 @@ const CartProductCard = ({product}) => {
 
     return (
         <div className="w-full">
-            <FlexContainer gap={"15px"} items={"flex-start"} wrap={"no-wrap"}>
+            <FlexContainer direction={screenWidth < 581 ? "column" : "row"} gap={"15px"} items={"flex-start"} wrap={"no-wrap"}>
                 <ImageContainer 
                     src={product.cover}
                     alt={"shoes photo"}

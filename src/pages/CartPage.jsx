@@ -11,6 +11,7 @@ import Button from "../components/styled/Button";
 import { clearCart } from "../store/userSlice";
 import { useEffect } from "react";
 import FirestoreService from "../services/FirestoreService";
+import { useScreenWidth } from "../hooks/useScreenWidth";
 
 const CartPage = () => {
 
@@ -22,6 +23,7 @@ const CartPage = () => {
     const { isAuth, userId } = useAuth();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const screenWidth = useScreenWidth();
 
     // useEffect(() => {
     //     FirestoreService.setCart(userId, items);
@@ -42,7 +44,7 @@ const CartPage = () => {
 
     return (
         <PageLayout>
-            <FlexContainer maxWidth={"80%"} items={"flex-start"} justify={"space-between"} wrap={"no-wrap"}>
+            <FlexContainer direction={screenWidth < 1025 ? "column" : "row"} maxWidth={"80%"} items={screenWidth < 1025 ? "center" : "flex-start"} justify={"space-between"} wrap={"no-wrap"} gap={"35px"}>
                 <FlexContainer direction={"column"} items={"flex-start"}>
                     <Title>
                         Shopping Cart
@@ -64,7 +66,7 @@ const CartPage = () => {
                         Order Summary
                     </Title>
 
-                    <div className="border-[1px] w-full p-6">
+                    <div className="border-[1px] w-full p-6 mb-6">
                         <FlexContainer maxWidth={"100%"} direction={"column"} gap={"15px"}>
                             <FlexContainer justify={"space-between"} maxWidth={"100%"}>
                                 <Text weight={"500"}>

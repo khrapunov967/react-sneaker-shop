@@ -83,6 +83,7 @@ const userSlice = createSlice({
             FirestoreService.setCart(state.userId, state.cart);
         }
     },
+    
     extraReducers: {
         [fetchUserData.fulfilled]: (state, action) => {
             state.name = action.payload.name;

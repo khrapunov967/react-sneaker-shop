@@ -21,7 +21,7 @@ const ProfilePage = () => {
     return (!isAuth) ? <Navigate to={"/sign-up"} /> : (
         <PageLayout>
             <FlexContainer maxWidth={"80%"} direction={"column"} gap={"30px"} justify={"center"} margin={"0px 0px 30px 0px"}>
-                <Text color={"#2c2c2c"} size={"1.4em"}>
+                <Text color={"#2c2c2c"} size={"1.4em"} align={"center"}>
                     {
                         user.name
                     }

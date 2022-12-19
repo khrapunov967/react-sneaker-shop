@@ -12,6 +12,7 @@ const ProductsPage = () => {
 
     const [searchQuery, setSearchQuery] = useState("");
     const [selectValue, setSelectValue] = useState("");
+    
     const products = useSelector(state => state.products.products);
 
     const filteredProducts = useMemo(() => {

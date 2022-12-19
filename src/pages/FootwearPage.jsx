@@ -10,10 +10,12 @@ import Text from "../components/styled/Text";
 import ProductCard from "../components/ProductCard";
 import CategoryCard from "../components/CategoryCard";
 import Loader from "../components/Loader";
+import { useScreenWidth } from "../hooks/useScreenWidth";
 
 const FootwearPage = () => {
 
     const {products, isFetching} = useSelector(state => state.products);
+    const screenWidth = useScreenWidth();
 
     return (
         <PageLayout>
@@ -41,14 +43,14 @@ const FootwearPage = () => {
                 </RouterLink>
             </FlexContainer>
 
-            <FlexContainer maxWidth={"80%"} gap={"8px"} justify="space-between" margin={"0px 0px 100px 0px"}>
+            <FlexContainer maxWidth={"80%"} gap={"8px"} justify={screenWidth < 581 ? "center" : "space-between"} margin={"0px 0px 100px 0px"}>
                 {
                     isFetching ? <Loader /> : 
                     products.map(product => <ProductCard product={product} key={product.id} />)
                 }
             </FlexContainer>
 
-            <FlexContainer direction={"column"} maxWidth={"50%"} margin={"0px 0px 30px 0px"}>
+            {/* <FlexContainer direction={"column"} maxWidth={"50%"} margin={"0px 0px 30px 0px"}>
                 <Title size={"1.7em"}>
                     Choose categories
                 </Title>
@@ -68,7 +70,7 @@ const FootwearPage = () => {
 
                     ].map((category) => <CategoryCard key={category.id} title={category.title} coverLink={category.coverLink} productCount={category.productCount} />)
                 }
-            </FlexContainer>
+            </FlexContainer> */}
         </PageLayout>
     );
 };

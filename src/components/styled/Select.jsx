@@ -21,8 +21,8 @@ const Select = ({options, value, setValue,  ...props}) => {
 
     return (
         <div className="" onClick={() => setVisible(state => !state)}>
-            <div className="border-[1px] rounded-xl py-1 px-2 relative">
-                <FlexContainer width={"100%"} maxWidth={"fit-content"}>
+            <div className="w-full max-w-[202px] border-[1px] rounded-xl py-1 px-2 relative">
+                <FlexContainer maxWidth={"100%"} wrap={"no-wrap"}>
                     <StyledSelect 
                         {...props} 
                         value={title}

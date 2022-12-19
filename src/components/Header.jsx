@@ -38,10 +38,6 @@ const Header = () => {
                         <RouterLink to={"/about-us"} color={screenWidth < 581 ? "white" : "#2c2c2c"}>
                             About Us
                         </RouterLink>
-
-                        <RouterLink to={"/sale"} color={screenWidth < 581 ? "white" : "#2c2c2c"}>
-                            Sale
-                        </RouterLink>
                     </FlexContainer>
 
                     <FlexContainer justify={"space-between"} width={"fit-content"} gap={"25px"}>
