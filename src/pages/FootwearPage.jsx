@@ -11,6 +11,7 @@ import ProductCard from "../components/ProductCard";
 import CategoryCard from "../components/CategoryCard";
 import Loader from "../components/Loader";
 import { useScreenWidth } from "../hooks/useScreenWidth";
+import Header from "../components/Header";
 
 const FootwearPage = () => {
 
@@ -19,6 +20,7 @@ const FootwearPage = () => {
 
     return (
         <PageLayout>
+            <Header />
             <FlexContainer maxWidth={"80%"} justify={"space-between"} margin={"0px 0px 30px 0px"}>
                 <Title size={"1.7em"}>
                     Featured Products

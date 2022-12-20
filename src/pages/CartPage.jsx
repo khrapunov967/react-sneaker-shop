@@ -12,6 +12,7 @@ import { clearCart } from "../store/userSlice";
 import { useEffect } from "react";
 import FirestoreService from "../services/FirestoreService";
 import { useScreenWidth } from "../hooks/useScreenWidth";
+import Header from "../components/Header";
 
 const CartPage = () => {
 
@@ -44,6 +45,7 @@ const CartPage = () => {
 
     return (
         <PageLayout>
+            <Header />
             <FlexContainer direction={screenWidth < 1025 ? "column" : "row"} maxWidth={"80%"} items={screenWidth < 1025 ? "center" : "flex-start"} justify={"space-between"} wrap={"no-wrap"} gap={"35px"}>
                 <FlexContainer direction={"column"} items={"flex-start"}>
                     <Title>

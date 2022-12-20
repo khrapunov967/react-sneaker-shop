@@ -7,6 +7,7 @@ import FlexContainer from "../components/styled/FlexContainer";
 import Text from "../components/styled/Text";
 import Button from "../components/styled/Button";
 import { Navigate } from "react-router-dom";
+import Header from "../components/Header";
 
 const ProfilePage = () => {
 
@@ -20,6 +21,8 @@ const ProfilePage = () => {
 
     return (!isAuth) ? <Navigate to={"/sign-up"} /> : (
         <PageLayout>
+            <Header />
+
             <FlexContainer maxWidth={"80%"} direction={"column"} gap={"30px"} justify={"center"} margin={"0px 0px 30px 0px"}>
                 <Text color={"#2c2c2c"} size={"1.4em"} align={"center"}>
                     {

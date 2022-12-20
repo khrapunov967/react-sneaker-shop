@@ -32,8 +32,6 @@ function App() {
 
   return (
     <RootLayout>
-      <Header />
-
       <Routes>
         <Route path="/" element={<FootwearPage />}/>
         <Route path="/profile" element={<ProfilePage />}/>

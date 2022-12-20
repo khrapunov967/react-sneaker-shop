@@ -7,6 +7,7 @@ import SearchBar from "../components/SearchBar";
 import Select from "../components/styled/Select";
 import ProductCard from "../components/ProductCard";
 import NotFoundMsg from "../components/NotFoundMsg";
+import Header from "../components/Header";
 
 const ProductsPage = () => {
 
@@ -26,6 +27,8 @@ const ProductsPage = () => {
 
     return (
         <PageLayout>
+            <Header />
+
             <FlexContainer maxWidth={"80%"} justify={"space-between"} margin={"0px 0px 60px 0px"}>
                 <Title size={"1.7em"}>
                     All Sneakers

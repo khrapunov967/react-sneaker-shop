@@ -15,6 +15,11 @@ import "slick-carousel/slick/slick-theme.css";
 import { addItemToCart } from "../store/userSlice";
 import { useMemo } from "react";
 import { useScreenWidth } from "../hooks/useScreenWidth";
+import { useEffect } from "react";
+import FirestoreService from "../services/FirestoreService";
+import Loader from "../components/Loader";
+import { async } from "@firebase/util";
+import Header from "../components/Header";
 
 const settings = {
     dots: true,
@@ -27,12 +32,46 @@ const settings = {
 const ProductDetailsPage = () => {
 
     const {id} = useParams();
-
-    const product = useSelector(state => state.products.products.find(item => +item.id === +id));
-    const dispatch = useDispatch();
-
     const [count, setCount] = useState(1);
-    const [currSize, setCurrSize] = useState(product.sizes[0]);
+    const [currSize, setCurrSize] = useState();
+    
+    // const product = useSelector(state => state.products.products.find(item => +item.id === +id));
+    const dispatch = useDispatch();
+    const [product, setProduct] = useState({
+        description: "", 
+        longTitle: "", 
+        category: "", 
+        price: "", 
+        sizes: [], 
+        detailedImages: [], 
+        id: null, 
+        shortTitle: "", 
+        cover: ""
+    });
+    const [isProductLoading, setIsProductLoading] = useState(false);
+
+    useEffect(() => {
+        (async () => {
+            setIsProductLoading(true);
+            const response = await FirestoreService.getProductById(id);
+            return response;
+        })().then(({description, longTitle, category, price, sizes, detailedImages, id, shortTitle, cover}) => {
+            setProduct({
+                ...product,
+                description,
+                longTitle, 
+                category, 
+                price, 
+                sizes, 
+                detailedImages, 
+                id,
+                shortTitle,
+                cover
+            });
+
+            setIsProductLoading(false);
+        });
+    }, []);
 
     const screenWidth = useScreenWidth();
 
@@ -40,8 +79,9 @@ const ProductDetailsPage = () => {
         return product.sizes.map(size => <SizeOptionCard sizeTitle={size} sizeValue={size} currSize={currSize} key={size} onClick={() => setCurrSize(size)} />)
     }, [currSize, product.sizes]);
 
-    return (
+    return isProductLoading ? <Loader /> : (
         <PageLayout>
+            <Header />
             <FlexContainer padding={"0px 0px 0px 0px"} maxWidth={"80%"} justify={screenWidth < 1140 ? "center" : "space-between"} items={"flex-start"} gap={"30px"} margin={"0px 0px 30px 0px"}>
                 <Slider {...settings} className={"w-full max-w-[400px] flex outline-none max-md-screen:mb-[30px]"}>
                     {

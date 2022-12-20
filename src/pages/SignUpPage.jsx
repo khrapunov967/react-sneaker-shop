@@ -12,6 +12,7 @@ import Input from "../components/styled/Input";
 import Button from "../components/styled/Button";
 import Text from "../components/styled/Text";
 import RouterLink from "../components/styled/RouterLink";
+import Header from "../components/Header";
 
 const SignUpPage = () => {
 
@@ -45,6 +46,8 @@ const SignUpPage = () => {
 
     return (
         <PageLayout>
+            <Header />
+
             <FlexContainer maxWidth={"80%"} direction={"column"} justify={"center"} margin={"0px 0px 30px 0px"}>
                 <Title size={"1.7em"} margin={"0px 0px 10px 0px"}>
                     Sign Up
