@@ -2,16 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { clearCart } from "../store/userSlice";
+import { useScreenWidth } from "../hooks/useScreenWidth";
 import CartProductCard from "../components/CartProductCard";
 import FlexContainer from "../components/styled/FlexContainer";
 import PageLayout from "../components/styled/PageLayout";
 import Text from "../components/styled/Text";
 import Title from "../components/styled/Title";
 import Button from "../components/styled/Button";
-import { clearCart } from "../store/userSlice";
-import { useEffect } from "react";
-import FirestoreService from "../services/FirestoreService";
-import { useScreenWidth } from "../hooks/useScreenWidth";
 import Header from "../components/Header";
 
 const CartPage = () => {
@@ -21,14 +19,10 @@ const CartPage = () => {
     let itemsPrice = cart.reduce((sum, curr) => +sum + (+curr.price * +curr.count), 0);
     let totalPrice = SHIPMENT_PRICE + itemsPrice;
 
-    const { isAuth, userId } = useAuth();
+    const { isAuth } = useAuth();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const screenWidth = useScreenWidth();
-
-    // useEffect(() => {
-    //     FirestoreService.setCart(userId, items);
-    // }, [items, userId])
 
     const order = () => {
         if (isAuth) {
