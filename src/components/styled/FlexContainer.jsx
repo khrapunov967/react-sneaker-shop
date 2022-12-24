@@ -7,6 +7,7 @@ const StyledFlexContainer = styled.div`
     padding: ${props => props.padding || "none"};
     flex-wrap: ${props => props.wrap || "wrap"};
     width: ${props => props.width || "100%"};
+    min-height: ${props => props.minHeight || "none"};
     max-width: ${props => props.maxWidth || "fit-content"};
     gap: ${props => props.gap || "1px"};
     flex-direction: ${props => props.direction || "row"};

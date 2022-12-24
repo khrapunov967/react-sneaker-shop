@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData, removeUser } from "../store/userSlice";
+import { Navigate } from "react-router-dom";
 import PageLayout from "../components/styled/PageLayout";
 import FlexContainer from "../components/styled/FlexContainer";
 import Text from "../components/styled/Text";
 import Button from "../components/styled/Button";
-import { Navigate } from "react-router-dom";
 import Header from "../components/Header";
 
 const ProfilePage = () => {
@@ -23,7 +23,7 @@ const ProfilePage = () => {
         <PageLayout>
             <Header />
 
-            <FlexContainer maxWidth={"80%"} direction={"column"} gap={"30px"} justify={"center"} margin={"0px 0px 30px 0px"}>
+            <FlexContainer maxWidth={"80%"} direction={"column"} gap={"30px"} justify={"center"} items={"center"} margin={"0px 0px 30px 0px"}>
                 <Text color={"#2c2c2c"} size={"1.4em"} align={"center"}>
                     {
                         user.name

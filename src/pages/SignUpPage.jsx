@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import { collection, doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc } from "firebase/firestore"; 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app, db } from "../firebase";
 import { useDispatch } from "react-redux";
@@ -19,6 +19,7 @@ const SignUpPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
 

@@ -13,21 +13,14 @@ import SignUpPage from "./pages/SignUpPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import CartPage from "./pages/CartPage";
 import ProfilePage from "./pages/ProfilePage";
+import AboutUsPage from "./pages/AboutUsPage";
 
 function App() {
 
   const dispatch = useDispatch();
-  // const { userId } = useSelector(state => state.user);
-
-  // useEffect(() => {
-  //   FirestoreService.setCart(userId, JSON.parse(localStorage.getItem("cart")));
-  //   console.log("SET CART")
-  // }, [items, userId])
 
   useEffect(() => {
     dispatch(fetchProducts());
-    // dispatch(fetchCartByUserId(userId));
-    console.log("FETCHED CART AND USER DATA")
   }, []);
 
   return (
@@ -40,6 +33,7 @@ function App() {
         <Route path="/products" element={<ProductsPage />}/>
         <Route path="/products/:id" element={<ProductDetailsPage />}/>
         <Route path="/cart" element={<CartPage />}/>
+        <Route path="/about-us" element={<AboutUsPage />}/>
       </Routes>
 
       <Footer />

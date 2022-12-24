@@ -1,25 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../store/userSlice";
+import { useScreenWidth } from "../hooks/useScreenWidth";
+import { useProduct } from "../hooks/useProduct";
 import ProductCounter from "../components/ProductCounter";
 import SizeOptionCard from "../components/SizeOptionCard";
 import Button from "../components/styled/Button";
 import FlexContainer from "../components/styled/FlexContainer";
-import ImageContainer from "../components/styled/ImageContainer";
 import PageLayout from "../components/styled/PageLayout";
 import Text from "../components/styled/Text";
 import Title from "../components/styled/Title";
+import FirestoreService from "../services/FirestoreService";
+import Loader from "../components/Loader";
+import Header from "../components/Header";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import { addItemToCart } from "../store/userSlice";
-import { useMemo } from "react";
-import { useScreenWidth } from "../hooks/useScreenWidth";
-import { useEffect } from "react";
-import FirestoreService from "../services/FirestoreService";
-import Loader from "../components/Loader";
-import { async } from "@firebase/util";
-import Header from "../components/Header";
 
 const settings = {
     dots: true,
@@ -31,11 +28,12 @@ const settings = {
 
 const ProductDetailsPage = () => {
 
-    const {id} = useParams();
+    const { id } = useParams();
     const [count, setCount] = useState(1);
-    const [currSize, setCurrSize] = useState();
+    const [currSize, setCurrSize] = useState(null);
+
+    const { inCart } = useProduct(id);
     
-    // const product = useSelector(state => state.products.products.find(item => +item.id === +id));
     const dispatch = useDispatch();
     const [product, setProduct] = useState({
         description: "", 
@@ -51,6 +49,7 @@ const ProductDetailsPage = () => {
     const [isProductLoading, setIsProductLoading] = useState(false);
 
     useEffect(() => {
+        console.log(inCart);
         (async () => {
             setIsProductLoading(true);
             const response = await FirestoreService.getProductById(id);
@@ -79,7 +78,7 @@ const ProductDetailsPage = () => {
         return product.sizes.map(size => <SizeOptionCard sizeTitle={size} sizeValue={size} currSize={currSize} key={size} onClick={() => setCurrSize(size)} />)
     }, [currSize, product.sizes]);
 
-    return isProductLoading ? <Loader /> : (
+    return isProductLoading ? <div className="w-full min-h-screen flex justify-center items-center"><Loader /></div> : (
         <PageLayout>
             <Header />
             <FlexContainer padding={"0px 0px 0px 0px"} maxWidth={"80%"} justify={screenWidth < 1140 ? "center" : "space-between"} items={"flex-start"} gap={"30px"} margin={"0px 0px 30px 0px"}>
@@ -126,8 +125,8 @@ const ProductDetailsPage = () => {
                             setCount={setCount}
                         />
 
-                        <Button textColor={"#fff"} background={"#2c2c2c"} padding={"12px 9px"} width={"100%"} onClick={() => dispatch(addItemToCart({id, title: product.shortTitle, price: product.price, cover: product.cover, size: currSize, count}))}>
-                            Add to cart
+                        <Button disabled={inCart ? true : false} textColor={"#fff"} background={inCart ? "#8fbc8f" : "#2c2c2c"} padding={"12px 9px"} width={"100%"} onClick={() => currSize !== null ? dispatch(addItemToCart({id, title: product.shortTitle, price: product.price, cover: product.cover, size: currSize, count})) : alert("invalid size")}>
+                            {inCart ? "Already in cart" : "Add to cart"}
                         </Button>
                     </FlexContainer>
                 </FlexContainer>

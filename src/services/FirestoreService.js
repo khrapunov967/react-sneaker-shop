@@ -10,7 +10,6 @@ class FirestoreService {
 
         querySnapshot.forEach((doc) => docs.push(doc.data()));
 
-        // console.log(docs);
         for (let doc of docs) {
             if (doc.id === id) return doc;
         }
@@ -23,7 +22,6 @@ class FirestoreService {
 
         querySnapshot.forEach((doc) => docs.push(doc.data()));
 
-        // console.log(docs);
         for (let doc of docs) {
             if (doc.id == id) return doc;
         }
@@ -36,7 +34,6 @@ class FirestoreService {
 
         querySnapshot.forEach((doc) => docs.push(doc.data()));
 
-        // console.log(docs);
         for (let doc of docs) {
             if (doc.id === id) return doc.cart;
         }

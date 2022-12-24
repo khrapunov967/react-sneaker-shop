@@ -1,23 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import FirestoreService from "../services/FirestoreService";
-// import { getAuth } from "firebase/auth";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
-// import { app } from "../firebase";
-
-// export const signUpUser = createAsyncThunk(
-//     "user/signUpUser",
-//     async (name, email, password) => {
-//         const auth = getAuth(app);
-
-//         const {user} = await createUserWithEmailAndPassword(auth, email, password).catch((err) => console.log(err));
-
-//         return {
-//             name,
-//             id: user.uid,
-//             email: user.email
-//         }
-//     }
-// )
 
 export const fetchUserData = createAsyncThunk(
     "user/fetchUserData",

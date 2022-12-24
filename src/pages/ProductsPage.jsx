@@ -57,7 +57,7 @@ const ProductsPage = () => {
 
             <FlexContainer maxWidth={"85%"} gap={"40px"} justify="center" margin={"0px 0px 100px 0px"}>
                 {
-                    !filteredProducts.length ? <NotFoundMsg msg={"Не найдено"} /> :
+                    !filteredProducts.length ? <NotFoundMsg msg={"Not Found"} /> :
                         filteredProducts.map(product => <ProductCard product={product} key={product.id} />)
                 }
             </FlexContainer>
