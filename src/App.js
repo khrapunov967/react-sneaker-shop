@@ -14,6 +14,7 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import CartPage from "./pages/CartPage";
 import ProfilePage from "./pages/ProfilePage";
 import AboutUsPage from "./pages/AboutUsPage";
+import { fetchUserData } from "./store/userSlice";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchProducts());
+    dispatch(fetchUserData());
   }, []);
 
   return (

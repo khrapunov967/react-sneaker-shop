@@ -18,13 +18,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
-const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-};
+// const settings = {
+//     dots: true,
+//     infinite: true,
+//     speed: 500,
+//     slidesToShow: 1,
+//     slidesToScroll: 1,
+// };
 
 const ProductDetailsPage = () => {
 
@@ -82,11 +82,12 @@ const ProductDetailsPage = () => {
         <PageLayout>
             <Header />
             <FlexContainer padding={"0px 0px 0px 0px"} maxWidth={"80%"} justify={screenWidth < 1140 ? "center" : "space-between"} items={"flex-start"} gap={"30px"} margin={"0px 0px 30px 0px"}>
-                <Slider {...settings} className={"w-full max-w-[400px] flex outline-none max-md-screen:mb-[30px]"}>
+                {/* <Slider {...settings} className={"w-full max-w-[400px] min-h-[400px] flex outline-none max-md-screen:mb-[30px]"}>
                     {
                         product.detailedImages.map(src => <img src={src} className={"w-full"} alt={"sneaker"} key={src} />)
                     }
-                </Slider>
+                </Slider> */}
+                <img src={product.detailedImages[0]} alt="wow" className="w-full max-w-[400px] flex outline-none" />
                 
                 <FlexContainer maxWidth={"450px"} direction={"column"} items={"flex-start"} gap={"30px"}>
                     <Title weight={"600"}>

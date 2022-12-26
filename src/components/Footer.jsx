@@ -1,4 +1,5 @@
 import React from "react";
+import { useScreenWidth } from "../hooks/useScreenWidth";
 import Logo from "../assets/images/logo.svg";
 import GitHubIcon from "../assets/icons/github-icon.svg";
 import VkIcon from "../assets/icons/vk-icon.svg";
@@ -6,7 +7,6 @@ import FlexContainer from "./styled/FlexContainer";
 import IconContainer from "./styled/IconContainer";
 import LogoContainer from "./styled/LogoContainer";
 import Text from "./styled/Text";
-import { useScreenWidth } from "../hooks/useScreenWidth";
 
 const Footer = () => {
 

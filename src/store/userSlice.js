@@ -43,8 +43,6 @@ const userSlice = createSlice({
             state.cart.push(newItem);
             localStorage.setItem("cart", JSON.stringify(state.cart));
             FirestoreService.setCart(state.userId, state.cart);
-
-            alert("Sneaker was added to cart!")
         },
 
         changeItemCountInCart(state, action) {
